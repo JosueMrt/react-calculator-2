@@ -5,7 +5,7 @@ import Display from './components/Display'
 
 function App() {
   const [display, setDisplay] = useState('0');
-  const [displayBis, setDisplayBis] = useState([]);
+  let [displayBis, setDisplayBis] = useState([]);
 
   const handleClear = () => {setDisplay('0'); setDisplayBis([])}
 
@@ -25,17 +25,17 @@ function App() {
     if(isNaN(Number(display[display.length-1])) === false) {                       // If a number is on the display add the operator               
       setDisplayBis(displayBis + display + op)
       setDisplay(op)
-    } else {
+    } else {                                                                       // Else replace old operator with the new one
         let sliced = displayBis.slice(0, -1);
         setDisplayBis(sliced + op)
         setDisplay(op);
     }
   }
 
-  const handleEq = () => {
-    setDisplayBis(displayBis + display)
-    
-    // setDisplay(new Function('return ' + displayBis + ';').call())
+  const handleEq = () => {                        // 🤢🤢🤢 Berk
+    displayBis += display
+    setDisplayBis(displayBis)
+    setDisplay(new Function('return ' + displayBis + ';').call())
   }
 
   return (
