@@ -21,20 +21,20 @@ const NumKey = ({ number, id, handleNum }) => {
     );
 }
 
-const OpKeys = ({ handleClear }) => {
+const OpKeys = ({ handleClear, handleOp, handleEq }) => {
     return (
         <div>
-            <button id='add'>+</button>
-            <button id='subtract'>-</button>
-            <button id='multiply'>*</button>
-            <button id='divide'>/</button>
-            <button id="equals">=</button>
+            <button onClick={() => handleOp('+')} id='add'>+</button>
+            <button onClick={() => handleOp('-')} id='subtract'>-</button>
+            <button onClick={() => handleOp('*')} id='multiply'>*</button>
+            <button onClick={() => handleOp('/')} id='divide'>/</button>
+            <button onClick={() => handleEq()} id="equals">=</button>
             <button onClick={() => handleClear()} id='clear'>AC</button>
         </div>
     );
 }
 
-const KeyPad = ({ handleClear, handleNum }) => {
+const KeyPad = ({ handleClear, handleNum, handleOp, handleEq }) => {
     return (
         <div>
             { PadLayout.map((val, i) => <NumKey 
@@ -42,7 +42,7 @@ const KeyPad = ({ handleClear, handleNum }) => {
                 id={val.text}
                 handleNum={handleNum}
             />) }
-            <OpKeys handleClear={handleClear} />
+            <OpKeys handleClear={handleClear} handleOp={handleOp} handleEq={handleEq} />
         </div>
     );
 }
