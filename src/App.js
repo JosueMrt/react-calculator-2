@@ -20,7 +20,7 @@ function App() {
       (display[0] === "0" && display.length <= 1 && num !== ".") ||
       isOp.test(display[0])
     ) {
-      // If the only number on screen is 0 or an operator, replace it. (Unless it's a 0 we're trying to add a comma)
+      // If the only number on screen is 0 or an operator, replace it. (Unless it's a 0 and we're trying to add a comma)
       setDisplay(num.toString());
     } else if (num === "." && isDotHere.test(display)) {
       // Is there already a comma on the display? We can't have 2 commas
@@ -34,6 +34,7 @@ function App() {
 
   const handleOp = (op) => {
     if (lastPress === "equals") {
+      // If last pressed key is =, start a new operation from the result
       let operation = display + op;
       setDisplayBis(operation);
       setDisplay(op);
