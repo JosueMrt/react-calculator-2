@@ -60,8 +60,12 @@
 
 #equals {
   grid-area: equals;
+  background-color: #0498dc;
+  border: none !important;
 }
 
 #clear {
   grid-area: clear;
+  background-color: #ff2d7a;
+  border: none !important;
 }
