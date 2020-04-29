@@ -45,17 +45,38 @@ function App() {
         setDisplayBis(operation);
         setDisplay(op);
       } else {
-        // Else replace old operator with the new one
-        let sliced = displayBis.slice(0, -1);
-        setDisplayBis(sliced + op);
-        setDisplay(op);
+        // Else check for operator rules
+        opPriority(op);
       }
     }
   };
 
   const opPriority = (op) => {
-    
-  }
+    const isOp = /[+-/*]/;
+    if (
+      op === "-" &&
+      isOp.test(displayBis[displayBis.length - 2]) === false &&
+      isOp.test(displayBis[displayBis.length - 1])
+    ) {
+      // If we type '-' and there's already one (1) operator, we can still add it
+      let operation = displayBis + op;
+      setDisplayBis(operation);
+      setDisplay(op);
+    } else if (
+      isOp.test(displayBis[displayBis.length - 1]) &&
+      isOp.test(displayBis[displayBis.length - 2])
+    ) {
+      // If there are already two (2) operators, remove them both and add new one
+      let operation = displayBis.slice(0, -2) + op;
+      setDisplayBis(operation);
+      setDisplay(op);
+    } else {
+      // Else replace old operator with the new one
+      let operation = displayBis.slice(0, -1) + op;
+      setDisplayBis(operation);
+      setDisplay(op);
+    }
+  };
 
   const handleEq = () => {
     let operation = displayBis + display;
