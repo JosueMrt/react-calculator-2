@@ -88,13 +88,15 @@ function App() {
 
   return (
     <div className="App">
-      <Display display={display} displayBis={displayBis} />
-      <KeyPad
-        handleClear={handleClear}
-        handleNum={handleNum}
-        handleOp={handleOp}
-        handleEq={handleEq}
-      />
+      <div id="calculator">
+        <Display display={display} displayBis={displayBis} />
+        <KeyPad
+          handleClear={handleClear}
+          handleNum={handleNum}
+          handleOp={handleOp}
+          handleEq={handleEq}
+        />
+      </div>
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import React from "react";
+import "../App.css";
+import "../GridLayout.css"
 
 const PadLayout = [
   { number: 7, text: "seven" },
@@ -16,48 +18,65 @@ const PadLayout = [
 
 const NumKey = ({ number, id, handleNum }) => {
   return (
-    <button onClick={() => handleNum(number)} id={id}>
+    <button className="keys num-keys" onClick={() => handleNum(number)} id={id}>
       {number}
     </button>
   );
 };
 
-const OpKeys = ({ handleClear, handleOp, handleEq }) => {
-  return (
-    <div>
-      <button onClick={() => handleOp("+")} id="add">
-        +
-      </button>
-      <button onClick={() => handleOp("-")} id="subtract">
-        -
-      </button>
-      <button onClick={() => handleOp("*")} id="multiply">
-        *
-      </button>
-      <button onClick={() => handleOp("/")} id="divide">
-        /
-      </button>
-      <button onClick={() => handleEq()} id="equals">
-        =
-      </button>
-      <button onClick={() => handleClear()} id="clear">
-        AC
-      </button>
-    </div>
-  );
-};
+// const OpKeys = ({ handleClear, handleOp, handleEq }) => {
+//   return (
+//     <div id='opkeys'>
+//       <button onClick={() => handleOp("+")} className="keys" id="add">
+//         +
+//       </button>
+//       <button onClick={() => handleOp("-")} className="keys" id="subtract">
+//         -
+//       </button>
+//       <button onClick={() => handleOp("*")} className="keys" id="multiply">
+//         *
+//       </button>
+//       <button onClick={() => handleOp("/")} className="keys" id="divide">
+//         /
+//       </button>
+//       <button onClick={() => handleEq()} className="keys" id="equals">
+//         =
+//       </button>
+//       <button onClick={() => handleClear()} className="keys" id="clear">
+//         AC
+//       </button>
+//     </div>
+//   );
+// };
 
 const KeyPad = ({ handleClear, handleNum, handleOp, handleEq }) => {
   return (
-    <div>
+    <div id="keypad">
       {PadLayout.map((val, i) => (
-        <NumKey number={val.number} id={val.text} handleNum={handleNum} />
+        <NumKey
+          id={val.text}
+          number={val.number}
+          handleNum={handleNum}
+        />
       ))}
-      <OpKeys
-        handleClear={handleClear}
-        handleOp={handleOp}
-        handleEq={handleEq}
-      />
+      <button onClick={() => handleOp("+")} className="keys op-keys" id="add">
+        +
+      </button>
+      <button onClick={() => handleOp("-")} className="keys op-keys" id="subtract">
+        -
+      </button>
+      <button onClick={() => handleOp("*")} className="keys op-keys" id="multiply">
+        *
+      </button>
+      <button onClick={() => handleOp("/")} className="keys op-keys" id="divide">
+        /
+      </button>
+      <button onClick={() => handleEq()} className="keys op-keys" id="equals">
+        =
+      </button>
+      <button onClick={() => handleClear()} className="keys op-keys" id="clear">
+        AC
+      </button>
     </div>
   );
 };
